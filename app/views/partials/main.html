@@ -4,11 +4,19 @@
   </form>
 </section>
 
-<section id="recent-searches">
+<section id="recent-searches" class="stations-list">
   <h3>Recent Searches</h3>
   <ul>
     <li><a href="/station/1">5 Points</a></li>
     <li><a href="/station/1">Chamblee</a></li>
     <li><a href="/station/1">Doraville</a></li>
+    <li><a href="/station/1">I'm fake tho</a></li>
   </ul>
+</section>
+
+<section id="all-stations" class="stations-list">
+	<h3>All Stations</h3>
+	<ul>
+		<li ng-repeat="station in stations"><a href="/station/{{station}}">{{station}}</a></li>
+	</ul>
 </section>

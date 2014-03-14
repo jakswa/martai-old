@@ -12,7 +12,7 @@ angular.module('martaioApp', [
         templateUrl: 'partials/main',
         controller: 'MainCtrl'
       })
-      .when('/station/:id', {
+      .when('/station/:station', {
           controller: 'StationCtrl',
           templateUrl: 'partials/station'
       })

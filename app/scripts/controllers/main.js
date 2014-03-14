@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('martaioApp')
-  .controller('MainCtrl', function ($scope, $http) {
-    $http.get('/api/awesomeThings').success(function(awesomeThings) {
-      $scope.awesomeThings = awesomeThings;
-    });
+  .controller('MainCtrl', function ($scope, $http, Marta) {
+  	$scope.stations = Marta.stations.map(function(i) {
+  		return i.toLowerCase();
+  	});
   });
