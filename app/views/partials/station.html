@@ -1,0 +1,15 @@
+<section id="station-header">
+  <h1>Chamblee Marta Station</h1>
+  <label for="direction">Direction</label>
+  <a href="" ng-class="{active:direction==='north'}">North</a>
+  <a href="" ng-class="{active:direction==='south'}">South</a>
+</section>
+
+<section class="upcoming-trains">
+	<ul>
+		<li ng-repeat="train in trains">
+			<span>{{train.name}}</span>
+			<span class="time">{{train.time_out}}m</span>
+		</li>
+	</ul>
+</section>
