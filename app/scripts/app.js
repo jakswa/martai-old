@@ -3,6 +3,7 @@
 angular.module('martaioApp', [
   'ngCookies',
   'ngResource',
+  'ui.filters',
   'ngSanitize',
   'ngRoute'
 ])
