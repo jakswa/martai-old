@@ -3,7 +3,7 @@
   <ul class="station-filters">
     <li>
       <label for="direction">Direction</label>
-      <a href="" class="pure-button" ng-repeat="arrival in Marta.arrivals | filter:{station: station} | jsUnique:'direction'" ng-class="{'pure-button-active': stationFilters.direction===arrival.direction}" ng-click="toggleFilter('direction', arrival.direction)">{{arrival.direction}}</a>
+      <a href="" class="pure-button" ng-repeat="arrival in Marta.arrivals | filter:{station: station} | jsUnique:'direction'" ng-class="{'pure-button-active': stationFilters.direction===arrival.direction}" ng-click="toggleFilter('direction', arrival.direction)">{{Marta.dirMap[arrival.direction]}}</a>
     </li>
     <li>
       <label for="line">Line</label>
