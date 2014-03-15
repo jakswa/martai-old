@@ -7,7 +7,7 @@
 
 <section id="all-stations" class="stations-list flush flush-list">
 	<ul>
-    <li ng-repeat="arrival in Marta.arrivals | filter:{station: stationSearch} | unique:'station' | orderBy:'station'">
+    <li ng-repeat="arrival in Marta.arrivals | filter:{station: stationSearch} | jsUnique:'station' | orderBy:'station'">
     <a href="/station/{{arrival.station}}">{{arrival.station}} &rarr;<span class="next-arrival" ng-class="arrival.line">{{Marta.dirMap[arrival.direction]}}bound {{arrival.waiting_time}} </span></a>
     </li>
 	</ul>

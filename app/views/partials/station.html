@@ -3,11 +3,11 @@
   <ul class="station-filters">
     <li>
       <label for="direction">Direction</label>
-      <a href="" class="pure-button" ng-repeat="arrival in Marta.arrivals | filter:{station: station} | unique:'direction'" ng-class="{'pure-button-active': stationFilters.direction===arrival.direction}" ng-click="toggleFilter('direction', arrival.direction)">{{arrival.direction}}</a>
+      <a href="" class="pure-button" ng-repeat="arrival in Marta.arrivals | filter:{station: station} | jsUnique:'direction'" ng-class="{'pure-button-active': stationFilters.direction===arrival.direction}" ng-click="toggleFilter('direction', arrival.direction)">{{arrival.direction}}</a>
     </li>
     <li>
       <label for="line">Line</label>
-      <a href="" class="pure-button" ng-repeat="arrival in Marta.arrivals | filter:{station: station} | unique:'line'" ng-class="{'pure-button-active': stationFilters.line===arrival.line}" ng-click="toggleFilter('line', arrival.line)">{{arrival.line}}</a>
+      <a href="" class="pure-button" ng-repeat="arrival in Marta.arrivals | filter:{station: station} | jsUnique:'line'" ng-class="{'pure-button-active': stationFilters.line===arrival.line}" ng-click="toggleFilter('line', arrival.line)">{{arrival.line}}</a>
     </li>
   </ul>
 </section>

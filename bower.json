@@ -12,8 +12,7 @@
     "angular-sanitize": "1.2.11",
     "angular-route": "1.2.11",
     "pure": "v0.4.2",
-    "underscore": "~1.6.0",
-    "angular-ui": "~0.4.0"
+    "underscore": "~1.6.0"
   },
   "devDependencies": {
     "angular-mocks": "1.2.11",

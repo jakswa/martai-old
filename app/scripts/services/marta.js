@@ -10,7 +10,7 @@ angular.module('martaioApp').service('Marta', function ($http, $timeout) {
     w: 'west',
   };
   marta.autorefresh = true;
-  marta.refreshInterval = 3000;
+  marta.refreshInterval = 10000;
   marta.arrivals = [];
   marta.updateArrivals = function() {
     marta.loadingArrivals = true;
