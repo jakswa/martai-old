@@ -7,9 +7,9 @@
 
 <section class="upcoming-trains">
 	<ul>
-		<li ng-repeat="arrival in Marta.arrivals">
-			<span>{{arrival.LINE | lowercase}}</span>
-			<span class="time">{{arrival.WAITING_TIME}}</span>
+    <li ng-repeat="arrival in Marta.arrivals | filter:{station: station}">
+			<span>{{arrival.line}}</span>
+			<span class="time">{{arrival.waiting_time}}</span>
 		</li>
 	</ul>
 </section>
