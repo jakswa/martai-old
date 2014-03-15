@@ -17,6 +17,6 @@
 <section id="all-stations" class="stations-list">
 	<h3>All Stations</h3>
 	<ul>
-		<li ng-repeat="station in stations"><a href="/station/{{station}}">{{station}}</a></li>
+		<li ng-repeat="arrival in Marta.arrivals"><a href="/station/{{arrival.STATION | lowercase}}">{{arrival.STATION | lowercase}}</a></li>
 	</ul>
 </section>
