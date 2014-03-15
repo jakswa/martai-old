@@ -1,1 +1,7 @@
 //Styles for station search
+span {
+  &.gold { color: #ffa700; }
+  &.red { color: #ff5100; }
+  &.green { color: green; }
+  &.blue { color: #30a7fa; }
+}

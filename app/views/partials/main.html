@@ -1,22 +1,14 @@
 <section id="station-search">
   <form class="pure-form">
-    <input type="search" placeholder="Search By Station Name" autofocus="true" />
+    <input type="search" placeholder="Search By Station Name" autofocus="true" ng-model="stationSearch" />
+    <button ng-click="toggleAutorefresh()" ng-class="{'pure-button-primary': Marta.autorefresh}" class="pure-button" ng-model="Marta.autorefresh">Autorefresh: {{Marta.autorefresh}}</button>
   </form>
 </section>
 
-<section id="recent-searches" class="stations-list">
-  <h3>Recent Searches</h3>
-  <ul>
-    <li><a href="/station/1">5 Points</a></li>
-    <li><a href="/station/1">Chamblee</a></li>
-    <li><a href="/station/1">Doraville</a></li>
-    <li><a href="/station/1">I'm fake tho</a></li>
-  </ul>
-</section>
-
-<section id="all-stations" class="stations-list">
-	<h3>All Stations</h3>
+<section id="all-stations" class="stations-list flush flush-list">
 	<ul>
-		<li ng-repeat="arrival in Marta.arrivals | orderBy:'station' | unique:'station'"><a href="/station/{{arrival.station}}">{{arrival.station}}</a></li>
+    <li ng-repeat="arrival in Marta.arrivals | filter:{station: stationSearch} | unique:'station' | orderBy:'station'">
+    <a href="/station/{{arrival.station}}">{{arrival.station}} &rarr;<span class="next-arrival" ng-class="arrival.line">{{Marta.dirMap[arrival.direction]}}bound {{arrival.waiting_time}} </span></a>
+    </li>
 	</ul>
 </section>

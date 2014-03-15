@@ -3,8 +3,50 @@
 		text-transform: capitalize;
 	}
 }
+ul.station-filters {
+  list-style-type: none;
+}
 #station-header {
-  h1 {
+  h3 {
 		text-transform: capitalize;
+  }
+}
+.flush-list ul {
+  margin: 1em 0 0 0;
+  padding: 0;
+}
+.flush-list li {
+  list-style-type: none;
+  border-top: 1px solid #e6e6e6;
+  border-left: 4px solid white;
+  &.gold {
+    border-left-color: #ffa700;
+  }
+  &.red {
+    border-left-color: #ff5100;
+  }
+  &.green {
+    border-left-color: green;
+  }
+  &.blue {
+    border-left-color: #30a7fa;
+  }
+  a {
+    display: block;
+    padding: 20px;
+    text-decoration: none;
+    &:visited {
+      color: #111;
+    }
+    span {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    span.next-arrival {
+      float: right;
+    }
+  }
+  .next-arrival {
+
   }
 }
