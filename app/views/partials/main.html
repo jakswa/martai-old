@@ -1,21 +1,22 @@
-<div ng-include="'partials/navbar'"></div>
+<section id="station-search">
+  <form class="pure-form">
+    <input type="search" placeholder="Search By Station Name" autofocus="true" />
+  </form>
+</section>
 
-<div class="jumbotron">
-  <h1>'Allo, 'Allo!</h1>
-  <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
-  </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#">Splendid!</a></p>
-</div>
+<section id="recent-searches" class="stations-list">
+  <h3>Recent Searches</h3>
+  <ul>
+    <li><a href="/station/1">5 Points</a></li>
+    <li><a href="/station/1">Chamblee</a></li>
+    <li><a href="/station/1">Doraville</a></li>
+    <li><a href="/station/1">I'm fake tho</a></li>
+  </ul>
+</section>
 
-<div class="row marketing">
-  <div ng-repeat="thing in awesomeThings">
-      <h4>{{thing.name}}</h4>
-      <p>{{thing.info}}</p>
-  </div>
-</div>
-
-<div class="footer">
-  <p>♥ from the Yeoman team</p>
-</div>
+<section id="all-stations" class="stations-list">
+	<h3>All Stations</h3>
+	<ul>
+		<li ng-repeat="station in stations"><a href="/station/{{station}}">{{station}}</a></li>
+	</ul>
+</section>
