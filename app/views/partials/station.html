@@ -3,11 +3,15 @@
   <ul class="station-filters">
     <li>
       <label for="direction">Direction</label>
-      <a href="" class="pure-button" ng-repeat="arrival in Marta.arrivals | filter:{station: station} | jsUnique:'direction'" ng-class="{'pure-button-active': stationFilters.direction===arrival.direction}" ng-click="toggleFilter('direction', arrival.direction)">{{Marta.dirMap[arrival.direction]}}</a>
+      <span class="button-bar">
+        <a href="" class="pure-button" ng-repeat="arrival in Marta.arrivals | filter:{station: station} | jsUnique:'direction'" ng-class="{'pure-button-active': stationFilters.direction===arrival.direction}" ng-click="toggleFilter('direction', arrival.direction)">{{Marta.dirMap[arrival.direction]}}</a>
+      </span>
     </li>
     <li>
       <label for="line">Line</label>
-      <a href="" class="pure-button" ng-repeat="arrival in Marta.arrivals | filter:{station: station} | jsUnique:'line'" ng-class="{'pure-button-active': stationFilters.line===arrival.line}" ng-click="toggleFilter('line', arrival.line)">{{arrival.line}}</a>
+      <span class="button-bar">
+        <a href="" class="pure-button" ng-repeat="arrival in Marta.arrivals | filter:{station: station} | jsUnique:'line'" ng-class="{'pure-button-active': stationFilters.line===arrival.line}" ng-click="toggleFilter('line', arrival.line)">{{arrival.line}}</a>
+      </span>
     </li>
   </ul>
 </section>

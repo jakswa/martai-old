@@ -1,0 +1,26 @@
+.pure-button {
+    border-radius: 4px;
+}
+
+.button-bar {
+    .pure-button {
+        border: 1px solid #ccc;
+        border-radius: 0;
+        border-left-width: 0px;
+
+        &:first-child {
+            border-top-left-radius: 4px;
+            border-bottom-left-radius: 4px;
+            border-left-width: 1px;
+        }
+
+        &:last-child {
+            border-radius: 0 4px 4px 0;
+
+            &:first-child {
+                border-radius: 4px;
+           }
+        }
+
+    }
+}
