@@ -33,6 +33,9 @@ ul.station-filters {
 .flush-list li {
   list-style-type: none;
   border-top: 1px solid #e6e6e6;
+  &:nth-last-child(-n+1) {
+    border-bottom: 1px solid #e6e6e6;
+  }
   a {
     display: block;
     padding: 20px;

@@ -1,6 +1,7 @@
 'use strict';
 
-angular.module('martaioApp').service('Marta', function ($http, $timeout) {
+angular.module('martaioApp').service('Marta', function ($http, $timeout, $q) {
+  var arrivalsDefer = $q.defer();
   var marta = {};
   marta.loadingArrivals = false;
   marta.dirMap = {
@@ -12,11 +13,13 @@ angular.module('martaioApp').service('Marta', function ($http, $timeout) {
   marta.autorefresh = true;
   marta.refreshInterval = 10000;
   marta.arrivals = [];
+  marta.arrivalsPromise = arrivalsDefer.promise;
   marta.updateArrivals = function() {
     marta.loadingArrivals = true;
     return $http.get('/api/arrivals').then(function(resp) {
       marta.loadingArrivals = false;
       marta.arrivals = resp.data;
+      arrivalsDefer.resolve(marta.arrivals);
     });
   };
   marta.arrivalPromise = null;
