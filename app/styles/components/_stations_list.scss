@@ -44,6 +44,20 @@ ul.station-filters {
     &:visited {
       color: #111;
     }
+
+    &.gold:hover, &.gold:focus {
+      background-color: #fde4b5;
+    }
+    &.red:hover, &.red:focus {
+      background-color: #fdd4c0;
+    }
+    &.green:hover, &.green:focus {
+      background-color: #c8f6c8;
+    }
+    &.blue:hover, &.blue:focus {
+      background-color: #b6e0fd;
+    }
+
     span {
       white-space: nowrap;
       text-overflow: ellipsis;
@@ -51,8 +65,5 @@ ul.station-filters {
     span.next-arrival {
       float: right;
     }
-  }
-  .next-arrival {
-
   }
 }
