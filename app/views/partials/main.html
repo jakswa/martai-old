@@ -1,7 +1,6 @@
 <section id="station-search">
   <form class="pure-form">
-    <input type="search" placeholder="Search By Station Name" autofocus="true" ng-model="stationSearch" />
-    <button ng-click="toggleAutorefresh()" ng-class="{'pure-button-primary': Marta.autorefresh}" class="pure-button" ng-model="Marta.autorefresh">Autorefresh: {{Marta.autorefresh}}</button>
+    <input type="search" class="pure-input-1" placeholder="Search By Station Name" autofocus="true" ng-model="stationSearch" />
   </form>
 </section>
 
@@ -11,7 +10,7 @@
       <a href="/station/{{Marta.nearest.station}}">{{Marta.nearest.station}} &rarr;<span class="next-arrival" ng-class="Marta.nearest.line">{{Marta.dirMap[Marta.nearest.direction]}}bound {{Marta.nearest.waiting_time}} </span></a>
     </li>
     <li ng-repeat="arrival in Marta.arrivals | filter:{station: stationSearch} | jsUnique:'station' | orderBy:'station'">
-    <a href="/station/{{arrival.station}}">{{arrival.station}} &rarr;<span class="next-arrival" ng-class="arrival.line">{{Marta.dirMap[arrival.direction]}}bound {{arrival.waiting_time}} </span></a>
+	    <a href="/station/{{arrival.station}}">{{arrival.station}} &rarr;<span class="next-arrival" ng-class="arrival.line">{{Marta.dirMap[arrival.direction]}}bound {{arrival.waiting_time}} </span></a>
     </li>
 	</ul>
 </section>

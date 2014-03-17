@@ -30,12 +30,11 @@
     <div class="pure-u-1-4 pure-hidden-phone pure-hidden-tablet"></div>
 
     <div class="wrapper pure-u-1-2">
-      <header>
-        <h2>Marta Arrival Times</h2>
-      </header>
+      <div id="countdown"></div>
+      <header ng-controller="HeaderCtrl" ng-include='"/partials/header.html"'></header>
       <main class="container" ng-view=""></main>
       <footer>
-        Created by Jake Swanson and Tommy Hunke. Talk to us over at <a href="https://github.com/jakswa/martaio">GitHub</a>.
+        <p>Created by Jake Swanson and Tommy Hunke. Talk to us over at <a href="https://github.com/jakswa/martaio">GitHub</a>.</p>
       </footer>
     </div>
 
@@ -70,6 +69,7 @@
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/header.js"></script>
         <script src="scripts/services/marta.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/navbar.js"></script>

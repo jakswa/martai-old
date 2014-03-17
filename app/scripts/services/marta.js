@@ -30,7 +30,7 @@ angular.module('martaioApp').service('Marta', function ($http, $timeout, $q, sta
       }
     }
     return _.find(marta.arrivals, function(i) {
-      return i.station === nearest.station
+      return i.station === nearest.station;
     });
   };
   marta.loadingArrivals = false;
@@ -57,7 +57,7 @@ angular.module('martaioApp').service('Marta', function ($http, $timeout, $q, sta
   marta.arrivalPromise = null;
   marta.arrivalTimeout = function() {
     $timeout.cancel(marta.arrivalPromise);
-    var countdown = angular.element('#countdown');
+    // var countdown = angular.element('#countdown');
     if (!marta.autorefresh) {
       return;
     }

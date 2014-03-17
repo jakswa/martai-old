@@ -2,7 +2,7 @@
 
 angular.module('martaioApp')
   .controller('MainCtrl', function ($scope, $http, Marta, User) {
-  	$scope.Marta = Marta;
+    $scope.Marta = Marta;
     $scope.user = User.data();
     $scope.toggleAutorefresh = function() {
       Marta.autorefresh = !Marta.autorefresh;
