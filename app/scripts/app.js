@@ -13,15 +13,15 @@ angular.module('martaioApp', [
         controller: 'MainCtrl'
       })
       .when('/station/:station', {
-          controller: 'StationCtrl',
-          templateUrl: 'partials/station'
+        controller: 'StationCtrl',
+        templateUrl: 'partials/station'
       })
       .otherwise({
         redirectTo: '/'
       });
       
     $locationProvider.html5Mode(true);
-  }).filter("jsUnique", function () {
+  }).filter('jsUnique', function () {
     return function (input, key) {
       return _.values(_.indexBy(input.reverse(), key));
     };

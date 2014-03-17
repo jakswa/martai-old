@@ -1,3 +1,6 @@
+body {
+}
+
 .wrapper {
   border-top: 2px solid #30a7fa;
   border-right: 1px solid #e6e6e6;
@@ -8,6 +11,43 @@
 header, section, footer {
   padding: 0 1em;
   text-align: center;
+}
+
+header {
+  padding: 10px;
+  position: relative;
+  border-bottom: 1px solid #ccc;
+  h1 {
+    font-size: 1.5em;
+    line-height: 1.5em;
+    margin: 0;
+    color: #000;
+  }
+
+  .pure-button {
+    color: #fff;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
+
+  .settings-toggle {
+    font-size: 20px;
+    padding: 3px 1em;
+    right: 10px;
+    left: auto;
+  }
+
+  .pure-menu {
+    position: absolute;
+    text-align: left;
+    top: 46px;
+    right: 10px;
+
+    &.pure-menu-open {
+      width: 200px;
+    }
+  }
 }
 
 section.flush {

@@ -11,5 +11,5 @@ angular.module('martaioApp')
         $scope.stationFilters[filter] = value;
       }
     };
-  	$scope.Marta = Marta;
+    $scope.Marta = Marta;
   });
