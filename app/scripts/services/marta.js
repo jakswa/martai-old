@@ -61,9 +61,7 @@ angular.module('martaioApp').service('Marta', function ($http, $timeout, $q, sta
     if (!marta.autorefresh) {
       return;
     }
-    countdown.css({transition: (marta.refreshInterval / 1000) + 's width ease-in-out', width: '100%'});
     marta.arrivalPromise = $timeout(function () {
-      countdown.css({transition: '0s', width: '0px'});
       marta.updateArrivals().then(function() {
         marta.arrivalTimeout();
       });
