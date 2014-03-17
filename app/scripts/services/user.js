@@ -7,7 +7,7 @@ angular.module('martaioApp').service('User', function User() {
   var user = {};
   // quick sessionStorage/localStorage interface generator thingy
   user.store = function(type) {
-   return function(key, val, noPersist) {
+    return function(key, val, noPersist) {
       var store = type === 'local' ? localStorage : sessionStorage;
       var storeData = type === 'local' ? data : session;
       if (val === undefined) {
@@ -15,10 +15,10 @@ angular.module('martaioApp').service('User', function User() {
       }
       storeData[key] = val;
       if (!noPersist) {
-        store.setItem("martaio:user", JSON.stringify(storeData)); 
+        store.setItem('martaio:user', JSON.stringify(storeData));
       }
       return key ? storeData[key] : storeData;
-   }
+    };
   };
   user.data = user.store('local');
   user.session = user.store('session');
