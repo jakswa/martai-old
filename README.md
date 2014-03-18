@@ -11,9 +11,15 @@ It's a simple [Nodejs](http://nodejs.org/) app that uses [AngularJS](http://angu
 
 ### Forking your own
 
-#### requirements
-You need an API key from Marta to run this app. You can [request from Marta](http://www.itsmarta.com/developers/data-sources/marta-rail-realtime-restful-api.aspx).
+1. You need an API key from Marta to run this app. You can [request one from Marta](http://www.itsmarta.com/developers/data-sources/marta-rail-realtime-restful-api.aspx).
+2. Set the `MARTA_TRAIN_API_KEY` environment variable to the key you received from Marta.
+3. Run the App. 
+  - While developing, you use `grunt serve` to start things up.
+  - When deploying to a hosting service, you use `grunt build` to generate a deployable version in the `/dist` directory, and then deploy the contents of that directory.
 
-Once you have an API key, you can fork the repo and deploy your own to various services.
-
-For example, to deploy to heroku, I just run `grunt build`, the `cd dist` and deploy the contents of that `/dist` directory to [Heroku](http://heroku.com/).
+For example, after setting up a heroku app to deploy to heroku, I run:
+ - `grunt build`
+ - `cd dist`
+ - `git commit [...]`
+ - `git remote add heroku git@heroku.com:your-heroku-app.git` (if I haven't already run this)
+ - `git push heroku master` to deploy to [Heroku](http://heroku.com/).
