@@ -7,10 +7,12 @@ body {
   height: 100%;
   position: fixed;
   z-index: -1;
-  background-image: url(/images/skyline.jpg);
-  background-size: 100% auto;
-  background-repeat: no-repeat;
-  background-position: 0 -100px;
+  @media (min-width: 767px) {
+    background-image: url(/images/skyline.jpg);
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: 0 -100px;
+  }
 }
 
 .wrapper {
