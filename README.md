@@ -5,11 +5,33 @@ Marta.io is currently a dashboard for Marta's realtime train API, and shows trai
 
 ![screenshot](https://dl.dropboxusercontent.com/u/32959843/marta_io_screenshot.png)
 
-### Implementation
+## Implementation
 
 It's a simple [Nodejs](http://nodejs.org/) app that uses [AngularJS](http://angularjs.org/) on the client-side. It has no database or other server-side storage. The server-side simply serves as a cache of a single API endpoint from Marta. The client-side code consumes that proxied data and does the rest of the work. We scaffolded this app using [Yeoman](http://yeoman.io/)'s [Angular Fullstack Generator](https://www.npmjs.org/package/generator-angular-fullstack).
 
-### Forking your own
+## API-related caveats
+
+- A train stopped at its final destination (like doraville or north springs) will not "switch directions" in the API until it leaves. So you'll only see northbound trains for north springs (`!train for north springs`), and you'll only see southbound trains for airport (`!train for airport`). Same for the east/west extremes.
+- The API currently doesn't give estimates for trains about to change directions. If a train leaves chamblee, and it's next stop is doraville, there won't be an estimate for when that train turns around and hits chamblee again. Because of this, you'll find certain filters usually yield no results, like `!train headed south for chamblee`. A workaround is to watch the northbound train that is about to switch directions: `!train headed north for doraville`.
+- The train API is new, and is bound to change on me. The script is tied to the current API response, which is a list of arrivals:
+
+```json
+[{
+  DESTINATION: "Airport",
+  DIRECTION: "S",
+  EVENT_TIME: "3/12/2014 5:40:28 PM",
+  LINE: "RED",
+  NEXT_ARR: "05:40:37 PM",
+  STATION: "WEST END STATION",
+  TRAIN_ID: "403506",
+  WAITING_SECONDS: "-37",
+  WAITING_TIME: "Boarding"
+},
+...
+]
+```
+
+## Forking your own
 
 1. You need an API key from Marta to run this app. You can [request one from Marta](http://www.itsmarta.com/developers/data-sources/marta-rail-realtime-restful-api.aspx).
 2. Set the `MARTA_TRAIN_API_KEY` environment variable to the key you received from Marta.
