@@ -14,4 +14,6 @@ It's a simple [Nodejs](http://nodejs.org/) app that uses [AngularJS](http://angu
 #### requirements
 You need an API key from Marta to run this app. You can [request from Marta](http://www.itsmarta.com/developers/data-sources/marta-rail-realtime-restful-api.aspx).
 
-Once you have an API key, you can fork the repo and deploy your own to
+Once you have an API key, you can fork the repo and deploy your own to various services.
+
+For example, to deploy to heroku, I just run `grunt build`, the `cd dist` and deploy the contents of that `/dist` directory to [Heroku](http://heroku.com/).
