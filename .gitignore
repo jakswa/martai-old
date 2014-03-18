@@ -6,6 +6,6 @@ app/bower_components
 heroku
 /views
 dist
-
+.DS_Store
 *.swp
 *.swo
