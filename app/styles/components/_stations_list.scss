@@ -1,3 +1,8 @@
+$gold: #ffa700;
+$red: #ff5100;
+$green: green;
+$blue: #30a7fa;
+
 .stations-list {
 	li {
 		text-transform: capitalize;
@@ -18,16 +23,16 @@ ul.station-filters {
 .flush-list.upcoming-trains li {
   border-left: 4px solid white;
   &.gold {
-    border-left-color: #ffa700;
+    border-left-color: $gold;
   }
   &.red {
-    border-left-color: #ff5100;
+    border-left-color: $red;
   }
   &.green {
-    border-left-color: green;
+    border-left-color: $green;
   }
   &.blue {
-    border-left-color: #30a7fa;
+    border-left-color: $blue;
   }
 }
 .flush-list li {
@@ -54,5 +59,70 @@ ul.station-filters {
   }
   .next-arrival {
 
+    &.gold {
+      color: $gold;
+
+      .dir {
+        background-color: $gold;
+      }
+      .time, .dir {
+        border-color: $gold;
+      }
+    }
+
+    &.red {
+      color: $red;
+
+      .dir {
+        background-color: $red;
+      }
+      .time, .dir {
+        border-color: $red;
+      }
+    }
+
+    &.green {
+      color: $green;
+
+      .dir {
+        background-color: $green;
+      }
+      .time, .dir {
+        border-color: $green;
+      }
+    }
+
+    &.blue {
+      color: $blue;
+
+      .dir {
+        background-color: $blue;
+      }
+      .time, .dir {
+        border-color: $blue;
+      }
+    }
+
+    .dir {
+      color: white;
+      background-color: gray;
+      font-weight: bold;
+
+      border-width: 1px;
+      border-style: solid;
+      border-radius: 1em 0 0 1em;
+      padding-left: .5em;
+      padding-right: .25em;
+    }
+
+    .time {
+      background-color: transparent;
+
+      border-width: 1px;
+      border-style: solid;
+      border-radius: 0 1em 1em 0;
+      padding-left: .25em;
+      padding-right: .5em;
+    }
   }
 }
