@@ -25,4 +25,18 @@ angular.module('martaioApp', [
     return function (input, key) {
       return _.values(_.indexBy(input.reverse(), key));
     };
+  }).filter('waitTime', function(){
+    return function(text){
+      var minutes = parseInt(text, 10);
+      if (isNaN(minutes)) {
+        return text;
+      } else {
+        if (minutes >= 10) {
+          minutes = minutes.toString();
+        } else {
+          minutes = '0' + minutes.toString();
+        }
+        return ':' + minutes;
+      }
+    };
   });
