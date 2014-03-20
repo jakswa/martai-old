@@ -7,13 +7,18 @@
 <section id="all-stations" class="stations-list flush flush-list">
 	<ul>
     <li ng-show="Marta.nearest">
-      <a href="/station/{{Marta.nearest.station}}">{{Marta.nearest.station}} &rarr;<span class="next-arrival" ng-class="Marta.nearest.line">{{Marta.dirMap[Marta.nearest.direction]}}bound {{Marta.nearest.waiting_time}} </span></a>
+	    <a href="/station/{{Marta.nearest.station}}">
+        {{Marta.nearest.station}} &rarr;
+        <span class="next-arrival" ng-class="Marta.nearest.line">
+          <span class='dir'>{{ Marta.nearest.direction }}</span><span class='time'>{{ Marta.nearest.waiting_time | waitTime }}</span>
+        </span>
+      </a>
     </li>
     <li ng-repeat="arrival in Marta.arrivals | filter:{station: stationSearch} | jsUnique:'station' | orderBy:'station'">
 	    <a href="/station/{{arrival.station}}">
         {{arrival.station}} &rarr;
         <span class="next-arrival" ng-class="arrival.line">
-          <span class='dir'>{{ Marta.dirMap[arrival.direction][0] }}</span><span class='time'>{{ arrival.waiting_time | waitTime }}</span>
+          <span class='dir'>{{ arrival.direction }}</span><span class='time'>{{ arrival.waiting_time | waitTime }}</span>
         </span>
       </a>
     </li>
