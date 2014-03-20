@@ -14,7 +14,7 @@
   </ul>
 </section>
 
-<section id="all-stations" class="stations-list flush flush-list">
+<section id="all-stations" class="stations-list flush flush-list" ng-show="Marta.arrivals.length > 0">
   <ul>
     <li class="section-title">
       <h2>All Stations</h2>
@@ -33,4 +33,9 @@
       </a>
     </li>
 	</ul>
+</section>
+
+<section id="no-stations">
+<h3>No arrival estimates available</h3>
+<p>You're probably looking at this when you should be asleep.</p>
 </section>
