@@ -1,19 +1,5 @@
 <section id="station-header">
   <h3>{{station}}</h3>
-  <ul class="station-filters">
-    <li>
-      <label for="direction">Direction</label>
-      <span class="button-bar">
-        <a href="" class="pure-button" ng-repeat="arrival in Marta.arrivals | filter:{station: station} | jsUnique:'direction'" ng-class="{'pure-button-active': stationFilters.direction===arrival.direction}" ng-click="toggleFilter('direction', arrival.direction)">{{Marta.dirMap[arrival.direction]}}</a>
-      </span>
-    </li>
-    <li>
-      <label for="line">Line</label>
-      <span class="button-bar">
-        <a href="" class="pure-button" ng-repeat="arrival in Marta.arrivals | filter:{station: station} | jsUnique:'line'" ng-class="{'pure-button-active': stationFilters.line===arrival.line}" ng-click="toggleFilter('line', arrival.line)">{{arrival.line}}</a>
-      </span>
-    </li>
-  </ul>
 </section>
 
 <section class="upcoming-trains flush-list flush">

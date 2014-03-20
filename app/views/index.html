@@ -23,14 +23,13 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="martaioApp" class="pure-g-r">
+  <body ng-app="martaioApp" ng-cloak class="pure-g-r">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
     <div class="pure-u-1-4 pure-hidden-phone pure-hidden-tablet"></div>
 
     <div class="wrapper pure-u-1-2">
-      <div id="countdown"></div>
       <header ng-controller="HeaderCtrl" ng-include='"/partials/header.html"'></header>
       <main class="container" ng-view=""></main>
       <footer>

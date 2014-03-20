@@ -39,18 +39,19 @@ ul.station-filters {
   &.section-title {
     border: none;
     margin-top: 1em;
+    background: linear-gradient(color-stops(white, #f6f6f6));
     &.flush-top {
       margin-top: 0;
     }
     h2 {
       margin-bottom: 1px;
       padding: 0.4em 0.83em 0.2em;
-      background: #e6e6e6;
+      background: linear-gradient(color-stops(#e6e6e6, #ddd));
       display: inline-block;
       margin-left: 0.83em;
       border-radius: 10px 10px 0 0;
       font-size: 1em;
-      border-bottom: 1px solid #ccc;
+      border-bottom: 1px solid #888;
     }
   }
 

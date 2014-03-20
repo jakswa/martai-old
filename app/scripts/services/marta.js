@@ -24,16 +24,13 @@ angular.module('martaioApp').service('Marta', function ($http, $timeout, $q, sta
     return dist;
   };
   marta.loadingArrivals = false;
-  marta.dirMap = {
-    s: 'south',
-    n: 'north',
-    e: 'east',
-    w: 'west',
-  };
   marta.autorefresh = true;
   marta.refreshInterval = 10000;
   marta.arrivals = [];
   marta.arrivalsPromise = arrivalsDefer.promise;
+  marta.stationName = function(station) {
+    return station.replace(/ station/i, '');
+  };
   marta.updateArrivals = function() {
     marta.loadingArrivals = true;
     return $http.get('/api/arrivals').then(function(resp) {

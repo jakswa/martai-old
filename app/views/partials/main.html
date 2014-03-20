@@ -1,11 +1,11 @@
 <section id="nearby-stations" class="stations-list flush flush-list" ng-show="Marta.nearbyArrivals.length > 0">
 	<ul>
     <li class="section-title flush-top">
-      <h2>Nearby Stations</h2>
+      <h2>Nearby Station Arrivals</h2>
     </li>
     <li ng-repeat="arrival in Marta.nearbyArrivals | jsUnique:'station' | orderBy:'dist'">
 	    <a href="/station/{{arrival.station}}">
-        {{arrival.station}} &rarr;
+        {{Marta.stationName(arrival.station)}}
         <span class="next-arrival" ng-class="arrival.line">
           <span class='dir'>{{ arrival.direction }}</span><span class='time'>{{ arrival.waiting_time | waitTime }}</span>
         </span>
@@ -17,7 +17,7 @@
 <section id="all-stations" class="stations-list flush flush-list" ng-show="Marta.arrivals.length > 0">
   <ul>
     <li class="section-title">
-      <h2>All Stations</h2>
+      <h2>All Station Arrivals</h2>
     </li>
     <li id="station-search">
       <form class="pure-form">
@@ -26,7 +26,7 @@
     </li>
     <li ng-repeat="arrival in Marta.arrivals | filter:{station: stationSearch} | jsUnique:'station' | orderBy:'station'">
 	    <a href="/station/{{arrival.station}}">
-        {{arrival.station}} &rarr;
+        {{Marta.stationName(arrival.station)}}
         <span class="next-arrival" ng-class="arrival.line">
           <span class='dir'>{{ arrival.direction }}</span><span class='time'>{{ arrival.waiting_time | waitTime }}</span>
         </span>
