@@ -11,8 +11,8 @@ It's a simple [Nodejs](http://nodejs.org/) app that uses [AngularJS](http://angu
 
 ## API-related caveats
 
-- A train stopped at its final destination (like doraville or north springs) will not "switch directions" in the API until it leaves. So you'll only see northbound trains for north springs (`!train for north springs`), and you'll only see southbound trains for airport (`!train for airport`). Same for the east/west extremes.
-- The API currently doesn't give estimates for trains about to change directions. If a train leaves chamblee, and it's next stop is doraville, there won't be an estimate for when that train turns around and hits chamblee again. Because of this, you'll find certain filters usually yield no results, like `!train headed south for chamblee`. A workaround is to watch the northbound train that is about to switch directions: `!train headed north for doraville`.
+- A train stopped at its final destination (like doraville or north springs) will not "switch directions" in the API until it leaves. So you'll only see northbound trains for north springs, and you'll only see southbound trains for airport. Same for the east/west extremes.
+- The API currently doesn't give estimates for trains about to change directions. If a train leaves chamblee, and it's next stop is doraville, there won't be an estimate for when that train turns around and hits chamblee again. A semi-workaround is to watch the northbound train that is about to switch directions.
 - The train API is new, and is bound to change on me. The script is tied to the current API response, which is a list of arrivals:
 
 ```json
