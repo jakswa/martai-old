@@ -16,22 +16,12 @@ angular.module('martaioApp').service('Marta', function ($http, $timeout, $q, sta
     }
     return d.promise;
   };
-  marta.closestArrival = function(position) {
-    var nearest = {dist: Infinity, station: null};
-    var curPos = position.coords;
-    for (var s in stationLocations) {
-      var pos = stationLocations[s];
-      var latDiff = pos.latitude - curPos.latitude;
-      var lngDiff = pos.longitude - curPos.longitude;
-      var dist = Math.sqrt(latDiff * latDiff + lngDiff * lngDiff);
-      if (dist < nearest.dist) {
-        nearest.dist = dist;
-        nearest.station = s;
-      }
-    }
-    return _.find(marta.arrivals, function(i) {
-      return i.station === nearest.station;
-    });
+  marta.stationDist = function(compare, position) {
+    var curPos = compare.coords;
+    var latDiff = position.latitude - curPos.latitude;
+    var lngDiff = position.longitude - curPos.longitude;
+    var dist = Math.sqrt(latDiff * latDiff + lngDiff * lngDiff);
+    return dist;
   };
   marta.loadingArrivals = false;
   marta.dirMap = {
@@ -49,8 +39,18 @@ angular.module('martaioApp').service('Marta', function ($http, $timeout, $q, sta
     return $http.get('/api/arrivals').then(function(resp) {
       marta.loadingArrivals = false;
       marta.arrivals = resp.data;
-      marta.getPosition().then(marta.closestArrival).then(function(arrival) {
-        marta.nearest = arrival;
+      marta.getPosition().then(function(position) {
+        var locs  = _.map(stationLocations, function(val, key) {
+          return _.extend({}, {
+            station: key, 
+            dist: marta.stationDist(position, val)
+          }, val);
+        });
+        var nearbyStations = _.sortBy(locs, 'dist').slice(0,3);
+        nearbyStations = _.pluck(nearbyStations, 'station');
+        marta.nearbyArrivals = _.filter(marta.arrivals, function(i) {
+          return nearbyStations.indexOf(i.station) >= 0;
+        });
       });
     });
   };

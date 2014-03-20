@@ -23,7 +23,10 @@ angular.module('martaioApp', [
     $locationProvider.html5Mode(true);
   }).filter('jsUnique', function () {
     return function (input, key) {
-      return _.values(_.indexBy(input.reverse(), key));
+      if (!input) {
+        return input;
+      }
+      return _.values(_.indexBy(input.slice(0).reverse(), key));
     };
   }).filter('waitTime', function(){
     return function(text){

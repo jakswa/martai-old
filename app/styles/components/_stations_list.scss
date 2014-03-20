@@ -17,7 +17,7 @@ ul.station-filters {
   }
 }
 .flush-list ul {
-  margin: 1em 0 0 0;
+  margin: 0;
   padding: 0;
 }
 .flush-list.upcoming-trains li {
@@ -36,6 +36,24 @@ ul.station-filters {
   }
 }
 .flush-list li {
+  &.section-title {
+    border: none;
+    margin-top: 1em;
+    &.flush-top {
+      margin-top: 0;
+    }
+    h2 {
+      margin-bottom: 1px;
+      padding: 0.4em 0.83em 0.2em;
+      background: #e6e6e6;
+      display: inline-block;
+      margin-left: 0.83em;
+      border-radius: 10px 10px 0 0;
+      font-size: 1em;
+      border-bottom: 1px solid #ccc;
+    }
+  }
+
   list-style-type: none;
   border-top: 1px solid #e6e6e6;
   &:nth-last-child(-n+1) {

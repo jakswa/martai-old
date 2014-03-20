@@ -1,18 +1,28 @@
-<section id="station-search">
-  <form class="pure-form">
-    <input type="search" class="pure-input-1" placeholder="Search By Station Name" autofocus="true" ng-model="stationSearch" />
-  </form>
+<section id="nearby-stations" class="stations-list flush flush-list" ng-show="Marta.nearbyArrivals.length > 0">
+	<ul>
+    <li class="section-title flush-top">
+      <h2>Nearby Stations</h2>
+    </li>
+    <li ng-repeat="arrival in Marta.nearbyArrivals | jsUnique:'station' | orderBy:'dist'">
+	    <a href="/station/{{arrival.station}}">
+        {{arrival.station}} &rarr;
+        <span class="next-arrival" ng-class="arrival.line">
+          <span class='dir'>{{ arrival.direction }}</span><span class='time'>{{ arrival.waiting_time | waitTime }}</span>
+        </span>
+      </a>
+    </li>
+  </ul>
 </section>
 
 <section id="all-stations" class="stations-list flush flush-list">
-	<ul>
-    <li ng-show="Marta.nearest">
-	    <a href="/station/{{Marta.nearest.station}}">
-        {{Marta.nearest.station}} &rarr;
-        <span class="next-arrival" ng-class="Marta.nearest.line">
-          <span class='dir'>{{ Marta.nearest.direction }}</span><span class='time'>{{ Marta.nearest.waiting_time | waitTime }}</span>
-        </span>
-      </a>
+  <ul>
+    <li class="section-title">
+      <h2>All Stations</h2>
+    </li>
+    <li id="station-search">
+      <form class="pure-form">
+        <input type="search" class="pure-input-1" placeholder="Search By Station Name" autofocus="true" ng-model="stationSearch" />
+      </form>
     </li>
     <li ng-repeat="arrival in Marta.arrivals | filter:{station: stationSearch} | jsUnique:'station' | orderBy:'station'">
 	    <a href="/station/{{arrival.station}}">
