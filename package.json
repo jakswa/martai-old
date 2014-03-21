@@ -5,7 +5,8 @@
     "express": "~3.4.3",
     "lodash": "~2.4.1",
     "ejs": "~0.8.4",
-    "request": "~2.34.0"
+    "request": "~2.34.0",
+    "newrelic": "~1.4.0"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
