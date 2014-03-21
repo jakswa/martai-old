@@ -45,3 +45,7 @@ For example, after setting up a heroku app to deploy to heroku, I run:
  - `git commit [...]`
  - `git remote add heroku git@heroku.com:your-heroku-app.git` (if I haven't already run this)
  - `git push heroku master` to deploy to [Heroku](http://heroku.com/).
+
+##### Optional Newrelic Integration
+
+I installed newrelic on this app today, to see how well it works for Node apps. If you're running your own and want to start reporting to newrelic, set the `NEWRELIC_LICENSE_KEY` environment variable to your newrelic key.
