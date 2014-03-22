@@ -1,5 +1,7 @@
 'use strict';
 
+var _ = window._;
+
 angular.module('martaioApp', [
   'ngCookies',
   'ngResource',

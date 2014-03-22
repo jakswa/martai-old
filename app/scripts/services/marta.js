@@ -1,20 +1,49 @@
 'use strict';
 
+var _ = window._;
+
 angular.module('martaioApp').service('Marta', function ($http, $timeout, $q, stationLocations, User) {
   var arrivalsDefer = $q.defer();
+  var supportsGeolocation = 'geolocation' in navigator;
   var marta = {};
-  marta.getPosition = function() {
-    var d = $q.defer();
-    var pos = User.session('userPosition');
-    if (pos) {
-      d.resolve(pos);
-    } else if('geolocation' in navigator) {
+  marta.updatePosition = function() {
+    var dfr = $q.defer();
+    marta.determiningPosition = true;
+    if(supportsGeolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {
-        User.session('userPosition', position);
-        d.resolve(position);
+        marta.determiningPosition = false;
+        User.data('userPosition', position);
+        dfr.resolve(position);
+      }, function(err) { 
+        dfr.reject({error: err.message}); 
       });
+    } else {
+      dfr.reject('geolocation not supported');
+      marta.determiningPosition = false;
     }
-    return d.promise;
+    return dfr.promise.then(marta.determineNearest);
+  };
+
+  /* we determine their nearest stations when:
+   * - their position coordinates get updated (in updatePosition)
+   * - we receive a new set of arrivals from the API (in updateArrivals)
+   */
+  marta.determineNearest = function() {
+    marta.positionFound.then(function() {
+      // position might change in future, don't use resolved value
+      var position = User.data('userPosition');
+      var locs  = _.map(stationLocations, function(val, key) {
+        return _.extend({}, {
+          station: key,
+          dist: marta.stationDist(position, val)
+        }, val);
+      });
+      var nearbyStations = _.sortBy(locs, 'dist').slice(0,3);
+      nearbyStations = _.pluck(nearbyStations, 'station');
+      marta.nearbyArrivals = _.filter(marta.arrivals, function(i) {
+        return nearbyStations.indexOf(i.station) >= 0;
+      });
+    });
   };
   marta.stationDist = function(compare, position) {
     var curPos = compare.coords;
@@ -26,7 +55,6 @@ angular.module('martaioApp').service('Marta', function ($http, $timeout, $q, sta
   marta.loadingArrivals = false;
   marta.autorefresh = true;
   marta.refreshInterval = 10000;
-  marta.arrivals = [];
   marta.dirMap = {
     s: 'south',
     n: 'north',
@@ -42,19 +70,9 @@ angular.module('martaioApp').service('Marta', function ($http, $timeout, $q, sta
     return $http.get('/api/arrivals').then(function(resp) {
       marta.loadingArrivals = false;
       marta.arrivals = resp.data;
-      marta.getPosition().then(function(position) {
-        var locs  = _.map(stationLocations, function(val, key) {
-          return _.extend({}, {
-            station: key, 
-            dist: marta.stationDist(position, val)
-          }, val);
-        });
-        var nearbyStations = _.sortBy(locs, 'dist').slice(0,3);
-        nearbyStations = _.pluck(nearbyStations, 'station');
-        marta.nearbyArrivals = _.filter(marta.arrivals, function(i) {
-          return nearbyStations.indexOf(i.station) >= 0;
-        });
-      });
+      if (supportsGeolocation) {
+        marta.determineNearest();
+      }
     });
   };
   marta.arrivalPromise = null;
@@ -70,6 +88,25 @@ angular.module('martaioApp').service('Marta', function ($http, $timeout, $q, sta
       });
     }, marta.refreshInterval);
   };
+
+  // for when a user turns on auto-locating in the UI
+  marta.locateUser = function() {
+    var posPromise = marta.updatePosition();
+    marta.positionFound = $q.when(User.data('userPosition') || posPromise);
+  };
+
+  // kick everything off
+  if (User.data('locationLock')) { // if user opts to lock location
+    if (User.data('userPosition')) { // use their current location, if set
+      marta.positionFound = $q.when(User.data('userPosition'));
+    } else { // cancel all geolocation-based features
+      var dfr = $q.defer();
+      dfr.reject({error: 'not auto-locating'});
+      marta.positionFound = dfr.promise;
+    }
+  } else {
+    marta.locateUser();
+  }
   marta.updateArrivals().then(function() {
     marta.arrivalPromise = marta.arrivalTimeout();
   });

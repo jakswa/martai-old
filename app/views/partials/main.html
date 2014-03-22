@@ -1,7 +1,8 @@
-<section id="nearby-stations" class="stations-list flush flush-list" ng-show="Marta.nearbyArrivals.length > 0">
+<section id="nearby-stations" class="stations-list flush flush-list" 
+    ng-show="Marta.nearbyArrivals.length > 0">
 	<ul>
     <li class="section-title flush-top">
-      <h2>Nearby Station Arrivals</h2>
+      <h2>Nearby Station Arrivals <span class="glyphicon glyphicon-map-marker geo-indicator" ng-show="Marta.determiningPosition"></span></h2>
     </li>
     <li ng-repeat="arrival in Marta.nearbyArrivals | jsUnique:'station' | orderBy:'dist'">
 	    <a href="/station/{{arrival.station}}">
@@ -21,7 +22,7 @@
     </li>
     <li id="station-search">
       <form class="pure-form">
-        <input type="search" class="pure-input-1" placeholder="Search By Station Name" autofocus="true" ng-model="stationSearch" />
+        <input type="search" class="pure-input-1" placeholder="Search By Station Name" ng-model="stationSearch" />
       </form>
     </li>
     <li ng-repeat="arrival in Marta.arrivals | filter:{station: stationSearch} | jsUnique:'station' | orderBy:'station'">
@@ -35,7 +36,7 @@
 	</ul>
 </section>
 
-<section id="no-stations" ng-hide="Marta.arrivals.length > 0">
+<section id="no-stations" ng-show="Marta.arrivals && Marta.arrivals.length == 0">
 <h3>No arrival estimates available</h3>
 <p>You're probably looking at this when you should be asleep.</p>
 </section>

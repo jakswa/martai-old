@@ -1,10 +1,14 @@
 <a href="/" class="pure-button pure-button-primary pull-left" ng-show="showBackBtn">Back</a>
 
 <button class="pure-button pure-button-primary pull-right settings-toggle" ng-click="openMenu=!openMenu"><span class="glyphicon glyphicon-cog"></span></button>
-<div class="pure-menu pull-right" ng-class="{'pure-menu-open':openMenu}" style="">
+<div class="pure-menu pull-right" ng-class="{'pure-menu-open':openMenu}" style=""
+     ng-mouseleave="openMenu=false">
     <ul>
         <li>
-            <a href="" ng-click="toggleAutorefresh()" ng-model="Marta.autorefresh">Auto Refresh: {{Marta.autorefresh ? "On" : "Off" }}</a>
+          <a href="" ng-click="toggleLocationLock()">Location lock: {{user.locationLock ? 'On' : 'Off'}}</a>
+        </li>
+        <li>
+            <a href="" ng-click="Marta.locateUser()" href="">Update Position</a>
         </li>
     </ul>
 </div>
