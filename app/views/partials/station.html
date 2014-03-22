@@ -4,12 +4,14 @@
 
 <section class="upcoming-trains flush-list flush">
 	<ul>
-    <li ng-repeat="arrival in Marta.arrivals | filter:stationFilters" ng-class="arrival.line">
-      <a>
+    <li ng-repeat="arrival in Marta.arrivals | filter:{station: station}" ng-class="arrival.line">
+      <a ng-href="/train/{{arrival.train_id}}">
         <span class="train-time">{{arrival.waiting_time}}</span>
         <span class="train-direction">{{Marta.dirMap[arrival.direction]}}bound</span>
         <span class="train-line">{{arrival.line}}</span>
+        to
         <span class="train-destination">{{arrival.destination}}</span>
+        <span class="train-id">Train ID: {{arrival.train_id}}</span>
       </a>
 		</li>
 	</ul>

@@ -18,6 +18,10 @@ angular.module('martaioApp', [
         controller: 'StationCtrl',
         templateUrl: 'partials/station'
       })
+      .when('/train/:train', {
+        controller: 'TrainCtrl',
+        templateUrl: 'partials/train'
+      })
       .otherwise({
         redirectTo: '/'
       });

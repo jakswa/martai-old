@@ -1,0 +1,15 @@
+<section id="station-header">
+  <h3>train id: {{train}}</h3>
+</section>
+
+<section class="upcoming-trains flush-list flush">
+  <ul>
+    <li ng-repeat="arrival in Marta.arrivals | filter:{train_id: train}" ng-class="arrival.line">
+      <a>
+        <span class="train-time">{{arrival.waiting_time}}</span>
+        for
+        <span class="train-station">{{arrival.station}}</span>
+      </a>
+    </li>
+  </ul>
+</section>
