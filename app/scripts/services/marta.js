@@ -75,7 +75,7 @@ angular.module('martaioApp').service('Marta', function ($http, $timeout, $q, sta
         if (!byStation[i.station]) {
           byStation[i.station] = {closest: {}, arrivals: []};
         }
-        if (!byStation[i.station].closest[i.directon]) {
+        if (!byStation[i.station].closest[i.direction]) {
           byStation[i.station].closest[i.direction] = i;
         }
         byStation[i.station].arrivals.push(i);
