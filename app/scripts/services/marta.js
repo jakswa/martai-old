@@ -14,8 +14,8 @@ angular.module('martaioApp').service('Marta', function ($http, $timeout, $q, sta
         marta.determiningPosition = false;
         User.data('userPosition', position);
         dfr.resolve(position);
-      }, function(err) { 
-        dfr.reject({error: err.message}); 
+      }, function(err) {
+        dfr.reject({error: err.message});
       });
     } else {
       dfr.reject('geolocation not supported');
@@ -40,7 +40,7 @@ angular.module('martaioApp').service('Marta', function ($http, $timeout, $q, sta
       });
       var nearbyStations = _.sortBy(locs, 'dist').slice(0,3);
       nearbyStations = _.pluck(nearbyStations, 'station');
-      marta.nearbyArrivals = _.filter(marta.arrivals, function(i) {
+      marta.nearbyArrivals = _.filter(marta.arrivalsByStation, function(i) {
         return nearbyStations.indexOf(i.station) >= 0;
       });
     });
@@ -73,14 +73,15 @@ angular.module('martaioApp').service('Marta', function ($http, $timeout, $q, sta
       var byStation = {};
       _.each(marta.arrivals, function(i) {
         if (!byStation[i.station]) {
-          byStation[i.station] = {closest: {}, arrivals: []};
+          byStation[i.station] = {station: i.station, closest: {}, arrivals: []};
         }
         if (!byStation[i.station].closest[i.direction]) {
           byStation[i.station].closest[i.direction] = i;
         }
         byStation[i.station].arrivals.push(i);
       });
-      marta.arrivalsByStation = byStation;
+      // toArray because ng-repeat can't filter over objects
+      marta.arrivalsByStation = _.toArray(byStation);
       if (supportsGeolocation) {
         marta.determineNearest();
       }

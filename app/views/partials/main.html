@@ -2,13 +2,17 @@
     ng-show="Marta.nearbyArrivals.length > 0">
 	<ul>
     <li class="section-title flush-top">
-      <h2>Nearby Station Arrivals <span class="glyphicon glyphicon-map-marker geo-indicator" ng-show="Marta.determiningPosition"></span></h2>
+      <h2><span class="glyphicon glyphicon-map-marker geo-indicator" ng-show="Marta.determiningPosition"></span> Nearby Station Arrivals</h2>
     </li>
-    <li ng-repeat="arrival in Marta.nearbyArrivals | jsUnique:'station' | orderBy:'dist'">
-	    <a href="/station/{{arrival.station}}">
-        {{Marta.stationName(arrival.station)}}
-        <span class="next-arrival" ng-class="arrival.line">
-          <span class='dir'>{{ arrival.direction }}</span><span class='time'>{{ arrival.waiting_time | waitTime }}</span>
+    <li ng-repeat="value in Marta.nearbyArrivals">
+	    <a href="/station/{{value.arrivals[0].station}}">
+        <span class="left">
+          {{Marta.stationName(value.arrivals[0].station)}}
+        </span>
+        <span class="right">
+          <span class="next-arrival" ng-class="arrival.line" ng-repeat="(direction, arrival) in value.closest">
+            <span class='dir'>{{ direction }}</span><span class='time'>{{ arrival.waiting_time | waitTime }}</span>
+          </span>
         </span>
       </a>
     </li>
@@ -25,11 +29,15 @@
         <input type="search" class="pure-input-1" placeholder="Search By Station Name" ng-model="stationSearch" />
       </form>
     </li>
-    <li ng-repeat="(station, value) in Marta.arrivalsByStation | orderBy:'station'">
-	    <a href="/station/{{station}}">
-        {{Marta.stationName(station)}}
-        <span class="next-arrival" ng-class="arrival.line" ng-repeat="(direction, arrival) in value.closest">
-          <span class='dir'>{{ direction }}</span><span class='time'>{{ arrival.waiting_time | waitTime }}</span>
+    <li ng-repeat="station in Marta.arrivalsByStation | filter:{station: stationSearch} | orderBy:'station'">
+	    <a href="/station/{{station.station}}">
+        <span class="left">
+          {{Marta.stationName(station.station)}}
+        </span>
+        <span class="right">
+          <span class="next-arrival" ng-class="arrival.line" ng-repeat="(direction, arrival) in station.closest">
+            <span class='dir'>{{ direction }}</span><span class='time'>{{ arrival.waiting_time | waitTime }}</span>
+          </span>
         </span>
       </a>
     </li>

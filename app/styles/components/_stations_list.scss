@@ -67,17 +67,33 @@ ul.station-filters {
     display: block;
     padding: 20px;
     text-decoration: none;
+    min-height: 1em;
+    overflow: hidden;
     color: #111;
     &:visited {
       color: #111;
     }
-    span {
+    > span.left {
+      position: absolute;
+      z-index: -1;
+    }
+    > span.right {
       white-space: nowrap;
       text-overflow: ellipsis;
-    }
-    span.next-arrival {
       float: right;
-      padding-left: 3px;
+      position: relative;
+      z-index: 0;
+      background: white;
+      max-width: 80%;
+      padding-left: 10px;
+      top: -1px;
+      overflow-x: hidden;
+      span.next-arrival {
+        display: inline-block;
+        padding-top: 1px;
+        padding-bottom: 2px;
+        padding-left: 3px;
+      }
     }
   }
   .next-arrival {
