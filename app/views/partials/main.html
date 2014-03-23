@@ -25,11 +25,11 @@
         <input type="search" class="pure-input-1" placeholder="Search By Station Name" ng-model="stationSearch" />
       </form>
     </li>
-    <li ng-repeat="arrival in Marta.arrivals | filter:{station: stationSearch} | jsUnique:'station' | orderBy:'station'">
-	    <a href="/station/{{arrival.station}}">
-        {{Marta.stationName(arrival.station)}}
-        <span class="next-arrival" ng-class="arrival.line">
-          <span class='dir'>{{ arrival.direction }}</span><span class='time'>{{ arrival.waiting_time | waitTime }}</span>
+    <li ng-repeat="(station, value) in Marta.arrivalsByStation | orderBy:'station'">
+	    <a href="/station/{{station}}">
+        {{Marta.stationName(station)}}
+        <span class="next-arrival" ng-class="arrival.line" ng-repeat="(direction, arrival) in value.closest">
+          <span class='dir'>{{ direction }}</span><span class='time'>{{ arrival.waiting_time | waitTime }}</span>
         </span>
       </a>
     </li>

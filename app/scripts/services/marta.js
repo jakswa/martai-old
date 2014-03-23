@@ -70,6 +70,17 @@ angular.module('martaioApp').service('Marta', function ($http, $timeout, $q, sta
     return $http.get('/api/arrivals').then(function(resp) {
       marta.loadingArrivals = false;
       marta.arrivals = resp.data;
+      var byStation = {};
+      _.each(marta.arrivals, function(i) {
+        if (!byStation[i.station]) {
+          byStation[i.station] = {closest: {}, arrivals: []};
+        }
+        if (!byStation[i.station].closest[i.directon]) {
+          byStation[i.station].closest[i.direction] = i;
+        }
+        byStation[i.station].arrivals.push(i);
+      });
+      marta.arrivalsByStation = byStation;
       if (supportsGeolocation) {
         marta.determineNearest();
       }
