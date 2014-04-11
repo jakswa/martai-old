@@ -11,16 +11,16 @@ angular.module('martaioApp', [
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'partials/main',
+        templateUrl: 'partials/main.html',
         controller: 'MainCtrl'
       })
       .when('/station/:station', {
         controller: 'StationCtrl',
-        templateUrl: 'partials/station'
+        templateUrl: 'partials/station.html'
       })
       .when('/train/:train', {
         controller: 'TrainCtrl',
-        templateUrl: 'partials/train'
+        templateUrl: 'partials/train.html'
       })
       .otherwise({
         redirectTo: '/'

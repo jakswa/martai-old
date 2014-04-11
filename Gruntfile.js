@@ -304,6 +304,16 @@ module.exports = function (grunt) {
         }]
       }
     },
+    ngtemplates:  {
+      martaioApp:        {
+        cwd:      'app/views',
+        src:      'partials/**.html',
+        dest:     '.tmp/concat/scripts/prod_templates.js',
+        options:  {
+          usemin: 'scripts/scripts.js' // <~~ This came from the <!-- build:js --> block
+        }
+      }
+    },
 
     // Allow the use of non-minsafe AngularJS files. Automatically makes it
     // minsafe compatible so Uglify does not destroy the ng references
@@ -521,6 +531,7 @@ module.exports = function (grunt) {
     'clean:dist',
     'bower-install',
     'useminPrepare',
+    'ngtemplates',
     'concurrent:dist',
     'autoprefixer',
     'concat',
