@@ -1,6 +1,8 @@
 martaio
 =======
 
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/jakswa/martaio?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Marta.io is currently a dashboard for Marta's realtime train API, and shows train arrival estimates:
 
 ![screenshot](https://dl.dropboxusercontent.com/u/32959843/marta_io_screenshot.png)
