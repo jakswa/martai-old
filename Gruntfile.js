@@ -333,7 +333,7 @@ module.exports = function (grunt) {
 
     // Allow the use of non-minsafe AngularJS files. Automatically makes it
     // minsafe compatible so Uglify does not destroy the ng references
-    ngmin: {
+    ngAnnotate: {
       dist: {
         files: [{
           expand: true,
@@ -538,12 +538,16 @@ module.exports = function (grunt) {
     grunt.shipit.remote('/bin/sh -l -c "' + commands.join(" && ") + '"', this.async());
   });
 
-  grunt.registerTask('naughtBounce', function() {
+  grunt.registerTask('naughtBounce', function(workerCount) {
     var dir = grunt.shipit.config.deployTo;
+    var args = ["--cwd " + dir +  "/current/dist"];
+    if (workerCount) {
+      args.push("--worker-count " + workerCount);
+    }
     var commands = [
       "cd " + dir + "/shared",
       "naught stop",
-      "naught start --cwd " + dir + "/current/dist " + dir + "/current/dist/server.js"
+      "naught start " + args.join(' ') + " " + dir + "/current/dist/server.js"
     ];
     grunt.shipit.remote('/bin/bash -l -c "' + commands.join(" && ") + '"', this.async());
   });
@@ -595,7 +599,7 @@ module.exports = function (grunt) {
     'concurrent:dist',
     'autoprefixer',
     'concat',
-    'ngmin',
+    'ngAnnotate',
     'copy:dist',
     'cdnify',
     'cssmin',
