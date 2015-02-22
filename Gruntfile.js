@@ -18,6 +18,22 @@ module.exports = function (grunt) {
   // Define the configuration for all the tasks
   grunt.initConfig({
 
+    // deploy settings
+    shipit: {
+      options: {
+        workspace: '/tmp/martaio_shipit',
+        deployTo: '/var/www/martaio',
+        repositoryUrl: 'https://github.com/jakswa/martaio.git',
+        ignores: ['.git', 'node_modules'],
+        keepReleases: 2,
+          //key: '/path/to/key',
+          //shallowClone: true
+      },
+      production: {
+        servers: 'deploy@104.236.11.157'
+      }
+    },
+
     // Project settings
     yeoman: {
       // configurable paths
@@ -500,6 +516,10 @@ module.exports = function (grunt) {
     grunt.task.run(['serve']);
   });
 
+  grunt.registerTask('doPwd', function() {
+    grunt.shipit.remote('pwd', this.async());
+  });
+
   grunt.registerTask('test', function(target) {
     if (target === 'server') {
       return grunt.task.run([
@@ -554,4 +574,6 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
+  grunt.loadNpmTasks('grunt-shipit');
+  grunt.loadNpmTasks('shipit-deploy');
 };
