@@ -22,7 +22,7 @@ module.exports = function (grunt) {
     shipit: {
       options: {
         workspace: '/tmp/martaio_shipit',
-        deployTo: '/var/www/martaio',
+        deployTo: process.env.MARTAIO_DEPLOY_TO,
         repositoryUrl: 'https://github.com/jakswa/martaio.git',
         ignores: ['.git', 'node_modules'],
         keepReleases: 2,
@@ -30,7 +30,7 @@ module.exports = function (grunt) {
           //shallowClone: true
       },
       production: {
-        servers: 'deploy@104.236.11.157'
+        servers: 'deploy@' + process.env.MARTAIO_SERVER
       }
     },
 
@@ -516,8 +516,48 @@ module.exports = function (grunt) {
     grunt.task.run(['serve']);
   });
 
-  grunt.registerTask('doPwd', function() {
-    grunt.shipit.remote('pwd', this.async());
+  grunt.registerTask('shipitBuild', function() {
+    var commands = [
+      "npm install",
+      "bower install",
+      "grunt build",
+    ];
+    grunt.shipit.local(commands.join(" && "), {
+      shell: '/bin/zsh',
+      cwd: grunt.shipit.config.workspace
+    }, this.async());
+  });
+
+  grunt.registerTask('naughtDeploy', function() {
+    var dir = grunt.shipit.config.deployTo;
+    var commands = [
+      "cd " + dir + "/current/dist",
+      "npm install",
+      "naught deploy " + dir + "/shared/naught.ipc"
+    ];
+    grunt.shipit.remote('/bin/sh -l -c "' + commands.join(" && ") + '"', this.async());
+  });
+
+  grunt.registerTask('naughtBounce', function() {
+    var dir = grunt.shipit.config.deployTo;
+    var commands = [
+      "cd " + dir + "/shared",
+      "naught stop",
+      "naught start --cwd " + dir + "/current/dist " + dir + "/current/dist/server.js"
+    ];
+    grunt.shipit.remote('/bin/bash -l -c "' + commands.join(" && ") + '"', this.async());
+  });
+
+  grunt.registerTask('fullDeploy', function() {
+    grunt.task.run([
+      'deploy:init',
+      'deploy:fetch',
+      'shipitBuild',
+      'deploy:update',
+      'deploy:publish',
+      'deploy:clean',
+      'naughtDeploy'
+    ]);
   });
 
   grunt.registerTask('test', function(target) {

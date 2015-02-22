@@ -22,8 +22,21 @@ require('./lib/config/express')(app);
 require('./lib/routes')(app);
 
 // Start server
-app.listen(config.port, function () {
+var server = app.listen(config.port, function () {
   console.log('Express server listening on port %d in %s mode', config.port, app.get('env'));
+  // naught support
+  if (process.send) process.send('online');
+});
+
+// naught support
+process.on('message', function(message) {
+  if (message === 'shutdown') {
+    server.close();
+    setTimeout(function() {
+      console.error("Server didn't close in time :(");
+      process.exit(1);
+    }, 30 * 1000);
+  }
 });
 
 // Expose app
