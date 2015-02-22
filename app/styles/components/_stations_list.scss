@@ -143,6 +143,9 @@ ul.station-filters {
     }
 
     .dir {
+      display: inline-block;
+      padding-top: 3px;
+
       color: white;
       background-color: gray;
       font-weight: bold;
@@ -155,6 +158,9 @@ ul.station-filters {
     }
 
     .time {
+      display: inline-block;
+      padding-top: 3px;
+
       background-color: transparent;
 
       border-width: 1px;
