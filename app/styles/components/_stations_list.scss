@@ -74,8 +74,8 @@ ul.station-filters {
       color: #111;
     }
     > span.left {
-      position: absolute;
-      z-index: -1;
+      position: relative;
+      top: 5px;
     }
     > span.right {
       white-space: nowrap;
