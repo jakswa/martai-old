@@ -9,9 +9,18 @@ angular.module('martaioApp')
     $scope.showBackBtn = false;
     $scope.$window = $window;
 
-    $scope.$watch('location.path()', function (val) {
-      $scope.showBackBtn = (val !== '/');
+    $scope.$on('$routeChangeSuccess', function(event, curr, prev) {
+      $scope.showBackBtn = curr.loadedTemplateUrl !== 'partials/main.html';
     });
+
+    var beginning = $window.history.length;
+    $scope.goBack = function() {
+      if ($window.history.length > beginning) {
+        $window.history.back();
+      } else {
+        $location.path('/');
+      }
+    };
 
     $scope.toggleLocationLock = function() {
       var locked = User.data('locationLock', !User.data('locationLock'));
