@@ -6,12 +6,13 @@
     "url": "https://github.com/jakswa/martaio.git"
   },
   "dependencies": {
+    "ejs": "~0.8.4",
     "express": "~3.4.3",
     "lodash": "~2.4.1",
-    "ejs": "~0.8.4",
-    "request": "~2.34.0",
+    "moment": "^2.9.0",
     "newrelic": "~1.4.0",
-    "q": "~1.0.1"
+    "q": "~1.0.1",
+    "request": "~2.34.0"
   },
   "devDependencies": {
     "connect-livereload": "~0.3.0",
