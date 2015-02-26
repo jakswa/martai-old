@@ -6,12 +6,13 @@
 	<ul>
     <li ng-repeat="arrival in Marta.arrivals | filter:{station: station}" ng-class="arrival.line">
       <a ng-href="/train/{{arrival.train_id}}">
+        <span ng-show="arrival.scheduled" class="glyphicon glyphicon-calendar"></span>
         <span class="train-time">{{arrival.waiting_time}}</span>
         <span class="train-direction">{{Marta.dirMap[arrival.direction]}}bound</span>
         <span class="train-line">{{arrival.line}}</span>
-        to
-        <span class="train-destination">{{arrival.destination}}</span>
-        <span class="train-id">Train ID: {{arrival.train_id}}</span>
+        <span ng-hide="arrival.scheduled" class="train-destination">to {{arrival.destination}}</span>
+        <span ng-hide="arrival.scheduled" class="train-id">Train ID: {{arrival.train_id}}</span>
+        <span ng-show="arrival.scheduled" class="train-id">(scheduled)</span>
       </a>
 		</li>
 	</ul>
