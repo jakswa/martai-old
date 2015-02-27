@@ -35,7 +35,7 @@ process.on('message', function(message) {
     setTimeout(function() {
       console.error("Server didn't close in time :(");
       process.exit(1);
-    }, 30 * 1000);
+    }, 5 * 1000);
   }
 });
 
