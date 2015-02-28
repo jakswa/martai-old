@@ -31,11 +31,7 @@ var server = app.listen(config.port, function () {
 // naught support
 process.on('message', function(message) {
   if (message === 'shutdown') {
-    server.close();
-    setTimeout(function() {
-      console.error("Server didn't close in time :(");
-      process.exit(1);
-    }, 5 * 1000);
+    process.exit();
   }
 });
 
