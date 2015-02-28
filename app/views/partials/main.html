@@ -11,7 +11,7 @@
         </span>
         <span class="right">
           <span class="next-arrival" ng-class="arrival.line" ng-repeat="(direction, arrival) in value.closest">
-            <span class='dir'>{{ direction }}</span><span class='time'>{{ arrival.waiting_time | waitTime }}</span>
+            <span class='dir'>{{ direction }}</span><span ng-class="{scheduled: arrival.scheduled}" class='time'>{{ arrival.waiting_time | waitTime }}</span>
           </span>
         </span>
       </a>
@@ -36,7 +36,7 @@
         </span>
         <span class="right">
           <span class="next-arrival" ng-class="arrival.line" ng-repeat="(direction, arrival) in station.closest">
-            <span class='dir'>{{ direction }}</span><span class='time'>{{ arrival.waiting_time | waitTime }}</span>
+            <span class='dir'>{{ direction }}</span><span ng-class="{scheduled: arrival.scheduled}" class='time'>{{ arrival.waiting_time | waitTime }}</span>
           </span>
         </span>
       </a>

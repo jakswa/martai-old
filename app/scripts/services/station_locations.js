@@ -7,8 +7,8 @@ angular.module('martaioApp')
       longitude:-84.386657
     },
     'indian creek station':{
-      latitude:33.7489954,
-      longitude:-84.3879824
+      latitude:33.769212,
+      longitude:-84.229255
     },
     'garnett station':{
       latitude:33.748938,
@@ -123,8 +123,8 @@ angular.module('martaioApp')
       longitude:-84.35262
     },
     'kensington station':{
-      latitude:33.772472,
-      longitude:-84.252236
+      latitude:33.772093,
+      longitude:-84.252217
     },
     'edgewood candler park station':{
       latitude:33.761812,

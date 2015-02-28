@@ -11,6 +11,11 @@ Marta.io is currently a dashboard for Marta's realtime train API, and shows trai
 
 It's a simple [Nodejs](http://nodejs.org/) app that uses [AngularJS](http://angularjs.org/) on the client-side. It has no database or other server-side storage. The server-side simply serves as a cache of a single API endpoint from Marta. The client-side code consumes that proxied data and does the rest of the work. We scaffolded this app using [Yeoman](http://yeoman.io/)'s [Angular Fullstack Generator](https://www.npmjs.org/package/generator-angular-fullstack).
 
+As of March 2015, there now exists a dev-only task that parses MARTA's GTFS
+files (CSV format), and creates JSON files for schedule-related data. See 
+[here](https://medium.com/@jakswa/marta-realtime-gaps-15614c34dfa1) 
+or [here](https://github.com/jakswa/martaio/pull/10) for more information.
+
 ## API-related caveats
 
 - A train stopped at its final destination (like doraville or north springs) will not "switch directions" in the API until it leaves. So you'll only see northbound trains for north springs, and you'll only see southbound trains for airport. Same for the east/west extremes.
