@@ -41,11 +41,11 @@ angular.module('martaioApp', [
         return text;
       } else {
         if (minutes >= 10) {
-          minutes = minutes.toString();
-        } else {
-          minutes = '0' + minutes.toString();
+          return ':' + minutes.toString();
+        } else if (minutes > 0) {
+          return ':0' + minutes.toString();
         }
-        return ':' + minutes;
+        return minutes;
       }
     };
   });
