@@ -2,6 +2,10 @@ angular.module('martaioApp')
   // roughly guesstimated by just passing them all through google's
   // geocoding service
   .constant('stationLocations', {
+    'bankhead station':{
+      latitude:33.772979,
+      longitude:-84.428537
+    },
     'midtown station':{
       latitude:33.780737,
       longitude:-84.386657
