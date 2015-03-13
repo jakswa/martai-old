@@ -16,27 +16,11 @@ files (CSV format), and creates JSON files for schedule-related data. See
 [here](https://medium.com/@jakswa/marta-realtime-gaps-15614c34dfa1) 
 or [here](https://github.com/jakswa/martaio/pull/10) for more information.
 
-## API-related caveats
+## FAQ
 
-- A train stopped at its final destination (like doraville or north springs) will not "switch directions" in the API until it leaves. So you'll only see northbound trains for north springs, and you'll only see southbound trains for airport. Same for the east/west extremes.
-- The API currently doesn't give estimates for trains about to change directions. If a train leaves chamblee, and it's next stop is doraville, there won't be an estimate for when that train turns around and hits chamblee again. A semi-workaround is to watch the northbound train that is about to switch directions.
-- The train API is new, and is bound to change on me. The script is tied to the current API response, which is a list of arrivals:
+> Can you add a map so I can see the train?
 
-```json
-[{
-  DESTINATION: "Airport",
-  DIRECTION: "S",
-  EVENT_TIME: "3/12/2014 5:40:28 PM",
-  LINE: "RED",
-  NEXT_ARR: "05:40:37 PM",
-  STATION: "WEST END STATION",
-  TRAIN_ID: "403506",
-  WAITING_SECONDS: "-37",
-  WAITING_TIME: "Boarding"
-},
-...
-]
-```
+I can, but all the ideas I have for this suck. I'll need a designer to figure out a couple things for me (hopefully with comps, but I'll take what I can get). We don't have GPS data for trains. For a given train, we can only say, "this train is between these two stations" or "this train is at this station." All the ideas I have for showing those two states on a map have been messy and kind of useless.
 
 ## Forking your own
 
