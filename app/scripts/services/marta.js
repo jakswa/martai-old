@@ -47,6 +47,9 @@ angular.module('martaioApp').service('Marta', function ($http, $timeout, $q, sta
   };
   marta.stationDist = function(compare, position) {
     var curPos = compare.coords;
+    if (!curPos || !position) {
+      return;
+    }
     var latDiff = position.latitude - curPos.latitude;
     var lngDiff = position.longitude - curPos.longitude;
     var dist = Math.sqrt(latDiff * latDiff + lngDiff * lngDiff);
