@@ -1,3 +1,7 @@
+# DEPRECATED
+
+I rewrote this in Ionic so that I could have a native mobile app to play around with. It turned out usable for myself, so I replaced the web UI as well. You can find it over at [jakswa/martaionic](https://github.com/jakswa/martaionic)
+
 martaio
 =======
 
